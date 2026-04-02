@@ -1,0 +1,230 @@
+[
+    {
+        "name": "subham",
+        "age": 23,
+        "email": "34",
+        "pin": 3456,
+        "accountNo.": "2i&ys43",
+        "balance": 3999
+    },
+    {
+        "name": "subham saha",
+        "age": 23,
+        "email": "ssubham",
+        "pin": "2345",
+        "accountNo.": "1W&o3Z7",
+        "balance": 0
+    },
+    {
+        "name": "tanmay rajpoot",
+        "age": 45,
+        "email": "tanmayrr",
+        "pin": "4567",
+        "accountNo.": "Dr018#a",
+        "balance": 36996
+    },
+    {
+        "name": "Subham Saha",
+        "age": 23,
+        "email": "ssubham745",
+        "pin": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+        "accountNo.": "93T$yN0",
+        "balance": 14401,
+        "transactions": [
+            {
+                "type": "deposit",
+                "amount": 10000,
+                "time": "2026-04-02 19:50:23.654325"
+            },
+            {
+                "type": "withdraw",
+                "amount": 100,
+                "time": "2026-04-02 19:50:49.948656"
+            },
+            {
+                "type": "deposit",
+                "amount": 1,
+                "time": "2026-04-02 19:52:06.663772"
+            },
+            {
+                "type": "deposit",
+                "amount": 4500,
+                "time": "2026-04-02 22:13:37.805005"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 1,
+                "to": "iO560Q$",
+                "time": "2026-04-02 22:31:14.710200"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 1,
+                "to": "*25x5VA",
+                "time": "2026-04-02 22:33:10.725479"
+            },
+            {
+                "type": "deposit",
+                "amount": 1,
+                "time": "2026-04-02 22:33:56.104660"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 1,
+                "from": "*25x5VA",
+                "time": "2026-04-02 22:56:04.684359"
+            }
+        ]
+    },
+    {
+        "name": "Tanmay Rajpoot",
+        "age": 45,
+        "email": "tanmay567",
+        "pin": "38083c7ee9121e17401883566a148aa5c2e2d55dc53bc4a94a026517dbff3c6b",
+        "accountNo.": "*25x5VA",
+        "balance": 18132,
+        "transactions": [
+            {
+                "type": "deposit",
+                "amount": 10000,
+                "time": "2026-04-02 20:02:29.269258"
+            },
+            {
+                "type": "deposit",
+                "amount": 10000,
+                "time": "2026-04-02 20:02:36.025473"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 10,
+                "from": "iO560Q$",
+                "time": "2026-04-02 20:34:13.009772"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 10,
+                "from": "iO560Q$",
+                "time": "2026-04-02 20:43:41.754140"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 1,
+                "from": "iO560Q$",
+                "time": "2026-04-02 21:57:40.501552"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 1,
+                "from": "93T$yN0",
+                "time": "2026-04-02 22:33:10.725479"
+            },
+            {
+                "type": "withdraw",
+                "amount": 1,
+                "time": "2026-04-02 22:54:47.379885"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 1,
+                "to": "93T$yN0",
+                "time": "2026-04-02 22:56:04.684359"
+            },
+            {
+                "type": "withdraw",
+                "amount": 1888,
+                "time": "2026-04-02 23:04:11.856331"
+            }
+        ]
+    },
+    {
+        "name": "Raj Shekhar",
+        "age": 54,
+        "email": "raju1223",
+        "pin": "ceaa28bba4caba687dc31b1bbe79eca3c70c33f871f1ce8f528cf9ab5cfd76dd",
+        "accountNo.": "iO560Q$",
+        "balance": 9879,
+        "transactions": [
+            {
+                "type": "deposit",
+                "amount": 10000,
+                "time": "2026-04-02 20:22:36.053169"
+            },
+            {
+                "type": "withdraw",
+                "amount": 1,
+                "time": "2026-04-02 20:30:47.049176"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 1,
+                "to": "iO560Q$",
+                "time": "2026-04-02 20:33:17.344114"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 1,
+                "from": "iO560Q$",
+                "time": "2026-04-02 20:33:17.344114"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 10,
+                "to": "*25x5VA",
+                "time": "2026-04-02 20:34:13.009772"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 10,
+                "to": "*25x5VA",
+                "time": "2026-04-02 20:43:41.754140"
+            },
+            {
+                "type": "deposit",
+                "amount": 1,
+                "time": "2026-04-02 21:55:07.300615"
+            },
+            {
+                "type": "withdraw",
+                "amount": 1,
+                "time": "2026-04-02 21:55:12.347190"
+            },
+            {
+                "type": "withdraw",
+                "amount": 100,
+                "time": "2026-04-02 21:55:21.998539"
+            },
+            {
+                "type": "transfer_sent",
+                "amount": 1,
+                "to": "*25x5VA",
+                "time": "2026-04-02 21:57:40.501552"
+            },
+            {
+                "type": "deposit",
+                "amount": 1000,
+                "time": "2026-04-02 22:19:47.563507"
+            },
+            {
+                "type": "withdraw",
+                "amount": 1000,
+                "time": "2026-04-02 22:19:55.116461"
+            },
+            {
+                "type": "deposit",
+                "amount": 1,
+                "time": "2026-04-02 22:24:52.671400"
+            },
+            {
+                "type": "withdraw",
+                "amount": 1,
+                "time": "2026-04-02 22:24:56.660914"
+            },
+            {
+                "type": "transfer_received",
+                "amount": 1,
+                "from": "93T$yN0",
+                "time": "2026-04-02 22:31:14.710200"
+            }
+        ]
+    }
+]
