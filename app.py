@@ -4,6 +4,8 @@ from bank_backend import Bank
 
 bank = Bank()
 
+st.set_page_config(page_title="Smart Bank", layout="wide")
+
 st.title("🏦 Smart Banking System")
 
 # -------- SESSION -------- #
@@ -44,86 +46,67 @@ if st.session_state['user'] is None:
 else:
     user = st.session_state['user']
 
-    # Sidebar balance
+    # Sidebar
+    st.sidebar.title("🏦 Smart Bank")
     st.sidebar.metric("💰 Balance", user['balance'])
+    st.sidebar.write(f"👤 {user['name']}")
 
     menu = st.sidebar.selectbox("Menu", [
         "Dashboard", "Deposit", "Withdraw",
-        "Transfer", "Transactions", "Logout"
+        "Transfer", "Transactions",
+        "Update Profile", "Delete Account",
+        "Logout"
     ])
 
     # ================= DASHBOARD ================= #
     if menu == "Dashboard":
-        st.header("📊 Account Dashboard")
+        st.header("📊 Dashboard")
 
-        # ---- USER INFO ---- #
         col1, col2 = st.columns(2)
 
         col1.write(f"👤 Name: {user['name']}")
         col1.write(f"📧 Email: {user['email']}")
 
-        col2.write(f"🏦 Account No: {user['accountNo.']}")
+        col2.write(f"🏦 Account: {user['accountNo.']}")
         col2.metric("💰 Balance", user['balance'])
-
-        # ---- TRANSACTION SUMMARY ---- #
-        transactions = user.get("transactions", [])
-
-        total_deposit = sum(t['amount'] for t in transactions if t['type'] == 'deposit')
-        total_withdraw = sum(t['amount'] for t in transactions if t['type'] == 'withdraw')
-
-        col3, col4 = st.columns(2)
-        col3.metric("📥 Total Deposited", total_deposit)
-        col4.metric("📤 Total Withdrawn", total_withdraw)
-
-        # ---- MINI STATEMENT ---- #
-        st.subheader("📜 Recent Transactions")
-
-        if not transactions:
-            st.info("No transactions yet")
-        else:
-            last_5 = transactions[-5:][::-1]
-
-            for t in last_5:
-                if t['type'] == "deposit":
-                    st.success(f"➕ Deposited ₹{t['amount']} on {t['time']}")
-                elif t['type'] == "withdraw":
-                    st.error(f"➖ Withdrawn ₹{t['amount']} on {t['time']}")
-                else:
-                    st.warning(f"🔄 Transfer ₹{t['amount']} on {t['time']}")
 
     # ================= DEPOSIT ================= #
     elif menu == "Deposit":
         amt = st.number_input("Amount", min_value=1)
 
         if st.button("Deposit"):
-            res, balance = bank.deposit(user, amt)
+            res, bal, fraud = bank.deposit(user, amt)
 
             if res == "Success":
                 st.success("Deposit successful ✅")
-                st.metric("Updated Balance", balance)
+                st.metric("Updated Balance", bal)
+
+                if fraud:
+                    st.warning(fraud)
             else:
                 st.error(res)
 
     # ================= WITHDRAW ================= #
     elif menu == "Withdraw":
-        st.header("💸 Withdraw Money")
-
-        amt = st.number_input("Enter amount", min_value=1)
+        amt = st.number_input("Amount", min_value=1)
 
         if st.button("Withdraw"):
-            res, balance = bank.withdraw(user, amt)   # ✅ unpack
+            res, bal, fraud = bank.withdraw(user, amt)
 
             if res == "Success":
-                st.success("Withdrawal successful ✅")
-                st.metric("Updated Balance", balance)
+                st.success("Withdraw successful ✅")
+                st.metric("Updated Balance", bal)
+
+                if fraud:
+                    st.warning(fraud)
             else:
                 st.error(res)
 
     # ================= TRANSFER ================= #
     elif menu == "Transfer":
-        st.info(f"Current Balance: {user['balance']}")
+        st.info(f"Balance: {user['balance']}")
 
-        recv = st.text_input("Receiver Account Number")
+        recv = st.text_input("Receiver Account")
 
         # Receiver preview
         if recv:
@@ -136,47 +119,70 @@ else:
         amt = st.number_input("Amount", min_value=1)
 
         if st.button("Transfer"):
-            res, balance = bank.transfer(user, recv, amt)
+            res, bal, fraud = bank.transfer(user, recv, amt)
 
             if res == "Success":
                 st.success("Transfer successful ✅")
-                st.metric("Updated Balance", balance)
+                st.metric("Updated Balance", bal)
+
+                if fraud:
+                    st.warning(fraud)
             else:
                 st.error(res)
 
     # ================= TRANSACTIONS ================= #
     elif menu == "Transactions":
-        st.header("📜 Transaction History")
+        st.header("📜 Transactions")
 
         tx = bank.get_transactions(user)
 
-        if not tx:
-            st.info("No transactions yet")
-        else:
-            st.write(tx)
-
-        # 📊 Graph
-            import pandas as pd
+        if tx:
             df = pd.DataFrame(tx)
 
-            if 'amount' in df.columns:
-                st.subheader("📈 Transaction Graph")
-                st.line_chart(df['amount'])
+            st.line_chart(df['amount'])
 
-    # -------- PDF DOWNLOAD -------- #
-        st.subheader("📄 Download Statement")
+            for t in reversed(tx):
+                st.info(f"{t['type']} | ₹{t['amount']} | {t['time']}")
+        else:
+            st.info("No transactions")
 
-        if st.button("Generate PDF"):
+        # PDF
+        if st.button("📄 Generate Statement"):
             file = bank.generate_pdf(user)
-            st.success("PDF Generated ✅")
 
             with open(file, "rb") as f:
-                st.download_button(
-                label="⬇️ Download PDF",
-                data=f,
-                file_name=file,
-                mime="application/pdf"
-                )
+                st.download_button("Download PDF", f, file)
+
+    # ================= UPDATE PROFILE ================= #
+    elif menu == "Update Profile":
+        st.header("✏️ Update Profile")
+
+        field = st.selectbox("Field", ["name", "email", "pin"])
+        value = st.text_input("New value")
+
+        if st.button("Update"):
+            res = bank.update_details(user, field, value)
+
+            if res == "Success":
+                st.success("Profile updated ✅")
+                st.rerun()
+            else:
+                st.error(res)
+
+    # ================= DELETE ACCOUNT ================= #
+    elif menu == "Delete Account":
+        st.header("⚠️ Delete Account")
+
+        confirm = st.text_input("Type DELETE to confirm")
+
+        if st.button("Delete"):
+            if confirm == "DELETE":
+                bank.delete_account(user)
+                st.session_state['user'] = None
+                st.success("Account deleted")
+                st.rerun()
+            else:
+                st.error("Type DELETE correctly")
 
     # ================= LOGOUT ================= #
     elif menu == "Logout":
