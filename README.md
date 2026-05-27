@@ -49,7 +49,8 @@ A full-stack banking application built using Python and Streamlit that simulates
 
 - **Frontend:** Streamlit  
 - **Backend:** Python (OOP)  
-- **Database:** JSON  
+- **Database:** JSON (used  for rapid prototyping, designed with modular architecture to support future migration to
+                SQL-based databases)  
 - **Machine Learning:** Scikit-learn (Isolation Forest)  
 - **Data Handling:** Pandas  
 - **PDF Generation:** ReportLab  
@@ -81,7 +82,15 @@ The system uses an unsupervised machine learning model (Isolation Forest) to:
 - Secure authentication system  
 - AI-powered fraud detection  
 - Full-stack implementation  
-- Clean and interactive UI  
+- Clean and interactive UI
+
+---
+## Screenshot of the website
+<img width="959" height="502" alt="image" src="https://github.com/user-attachments/assets/434743af-4a77-44f4-90f4-3764f445007a" />
+<img width="959" height="502" alt="image" src="https://github.com/user-attachments/assets/549dd360-e089-467c-9a41-4650db542d49" />
+<img width="959" height="503" alt="image" src="https://github.com/user-attachments/assets/83b42d0f-11ac-410c-b4a0-90f70c03ff8a" />
+
+
 
 
 
